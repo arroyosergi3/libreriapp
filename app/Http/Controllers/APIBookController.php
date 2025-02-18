@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class APIBookController extends Controller
@@ -12,6 +13,14 @@ class APIBookController extends Controller
     public function index()
     {
         //
+        $books = Book::all();
+        //return response()->json($cars);
+
+        return response()->json([
+            'status'=> true,
+            'books'  => $books,
+            'msg'   => 'Book list is ok'
+        ], 200);
     }
 
     /**
