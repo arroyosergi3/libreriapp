@@ -24,7 +24,7 @@
                     <x-nav-link :href="route('mios')" :active="request()->routeIs('mios')">
                         {{ __('Mis Libros') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('book.store')" :active="request()->routeIs('book.store')">
+                    <x-nav-link :href="route('book.create')" :active="request()->routeIs('book.create')">
                         {{ __('Registrar Libro') }}
                     </x-nav-link>
 

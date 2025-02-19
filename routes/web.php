@@ -21,5 +21,6 @@ Route::middleware('auth')->group(function () {
 // MIAS
 Route::get('/misLibros', [BookController::class, 'mios'])->name('mios');
 
+// PORTEGER CON MI MIDDLEWARE, USAR LITERAL:  ->middleware(['auth', 'admin'])
 Route::resource('book', BookController::class);
 require __DIR__.'/auth.php';

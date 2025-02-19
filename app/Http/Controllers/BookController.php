@@ -34,6 +34,8 @@ class BookController extends Controller
     public function create()
     {
         //
+        return view('books.create');
+
     }
 
     /**
@@ -42,7 +44,7 @@ class BookController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required | unique:cars,matricula, NULL, id, deleted_at,NULL',
+            'title' => 'required',
             'author' => 'required',
             'publisher' => 'required',
             'isbn' => 'required',
@@ -67,12 +69,12 @@ class BookController extends Controller
 
 
             $book->save();
-            $request->file('foto')->storeAs('img_cars', $foto);
+            $request->file('pic')->storeAs('img_books', $foto);
 
-            return to_route('book.index')->with('msg', 'Libro añadido correctamente');
+            return to_route('book.index')->with('msg', 'insertbooksuccess');
             //return redirect()->route('car.index');
         } catch (QueryException $qe) {
-            return to_route('car.index')->with('msg', 'Error al añadir el coche');
+            return to_route('book.index')->with('msg', 'insertbookerror');
 
         }
 
