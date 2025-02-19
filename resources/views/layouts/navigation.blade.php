@@ -21,8 +21,11 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Mis Solicitudes') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('mios')" :active="request()->routeIs('mios')">
                         {{ __('Mis Libros') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('book.store')" :active="request()->routeIs('book.store')">
+                        {{ __('Registrar Libro') }}
                     </x-nav-link>
 
                 </div>

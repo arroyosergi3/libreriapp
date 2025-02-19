@@ -20,10 +20,11 @@ class BookFactory extends Factory
     {
         return [
             'user_id' => User::inRandomOrder()->first()->id, // Usuario aleatorio
-            'title' => $this->faker->sentence(), // Título aleatorio
+            'title' => $this->faker->sentence(4), // Título aleatorio
             'author' => $this->faker->name(), // Autor aleatorio
             'publisher' => $this->faker->company(), // Editorial aleatoria
             'isbn' => $this->faker->isbn13(), // ISBN aleatorio
+            'pic' => $this->faker->imageUrl(), // Imagen aleatoria
             'created_at' => now(),
             'updated_at' => now(),
         ];

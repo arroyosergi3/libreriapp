@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -40,15 +41,50 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'title' => 'required | unique:cars,matricula, NULL, id, deleted_at,NULL',
+            'author' => 'required',
+            'publisher' => 'required',
+            'isbn' => 'required',
+            'pic' => 'required | image'
 
+        ]);
+
+        try {
+            $book = new Book();
+            $book->title = $request->title;
+            $book->author = $request->author;
+            $book->publisher = $request->publisher;
+            $book->isbn = $request->isbn;
+            $book->pic = $request->pic;
+            $book->user_id = Auth::id();
+
+
+
+            $foto = time() . '-' . $request->file('pic')->getClientOriginalName();
+            //$request->file('foto')->move(public_path('fotos'), $nombre_foto);
+            $book->pic = $foto;
+
+
+            $book->save();
+            $request->file('foto')->storeAs('img_cars', $foto);
+
+            return to_route('book.index')->with('msg', 'Libro añadido correctamente');
+            //return redirect()->route('car.index');
+        } catch (QueryException $qe) {
+            return to_route('car.index')->with('msg', 'Error al añadir el coche');
+
+        }
+
+
+    }
     /**
      * Display the specified resource.
      */
     public function show(Book $book)
     {
         //
+        return view('books.show')->with('book', $book);
     }
 
     /**
@@ -73,5 +109,13 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         //
+    }
+
+    public function mios()
+    {
+        $user = User::find(Auth::id());
+       // $mybooks = Book::where('user_id', $user->id)->get();
+        $mybooks = $user->books()->get();
+        return view('books.mios')->with('mybooks',$mybooks)->with('user',$user);
     }
 }

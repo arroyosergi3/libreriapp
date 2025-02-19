@@ -19,5 +19,7 @@ Route::middleware('auth')->group(function () {
 });
 
 // MIAS
+Route::get('/misLibros', [BookController::class, 'mios'])->name('mios');
+
 Route::resource('book', BookController::class);
 require __DIR__.'/auth.php';
