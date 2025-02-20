@@ -14,7 +14,7 @@
 
 
                     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                            <img class="rounded-t-lg" src="{{ asset($book->pic) }}" alt="{{ $book->title }}" />
+                            <img class="rounded-t-lg" src="{{ asset('storage/' . $book->pic) }}" alt="{{ $book->title }}" />
 
                         <div class="p-5">
                             <a href="#">

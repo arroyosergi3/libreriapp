@@ -58,7 +58,7 @@ class BookController extends Controller
             $book->author = $request->author;
             $book->publisher = $request->publisher;
             $book->isbn = $request->isbn;
-            $book->pic = $request->pic;
+            //$book->pic = $request->pic;
             $book->user_id = Auth::id();
 
 
@@ -68,9 +68,10 @@ class BookController extends Controller
             $book->pic = $foto;
 
 
-            $book->save();
             $request->file('pic')->storeAs('img_books', $foto);
+            $book->pic = 'img_books/' . $foto;
 
+            $book->save();
             return to_route('book.index')->with('msg', 'insertbooksuccess');
             //return redirect()->route('car.index');
         } catch (QueryException $qe) {
