@@ -28,7 +28,7 @@
                                     {{ $book->title }}
                                 </h5>
                                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Autor: {{ $book->author }}</p>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Editorial: {{ $book->publisher }}</p>
+                                <!-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Editorial: {{ $book->publisher }}</p> -->
                                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Usuario: {{ $user->name }}</p>
                             </div>
                         </a>

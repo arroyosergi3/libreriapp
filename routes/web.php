@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
 // MIAS
 Route::get('/misLibros', [BookController::class, 'mios'])->name('mios');
-
+Route::post('/book/{book}', [BookController::class, 'cambiar'])->name('cambiar');
 // PORTEGER CON MI MIDDLEWARE, USAR LITERAL:  ->middleware(['auth', 'admin'])
 Route::resource('book', BookController::class);
 require __DIR__.'/auth.php';

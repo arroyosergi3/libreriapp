@@ -21,7 +21,6 @@ class BookSearch extends Component
         $books = Book::where(function ($query) {
                 $query->where('title', 'like', '%'. $this->buscador. '%')
                     ->orWhere('author', 'like', '%'. $this->buscador. '%')
-                    ->orWhere('publisher', 'like', '%'. $this->buscador. '%')
                     ->orWhere('isbn', 'like', '%'. $this->buscador. '%');
             })
             ->where('user_id','!=', $this->user->id) // Esta condición SIEMPRE debe cumplirse

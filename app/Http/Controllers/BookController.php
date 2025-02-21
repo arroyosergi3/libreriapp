@@ -7,6 +7,7 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Number;
 
 
 class BookController extends Controller
@@ -88,6 +89,15 @@ class BookController extends Controller
     {
         //
         return view('books.show')->with('book', $book);
+    }
+
+    public function cambiar( $idBook)
+    {
+        //
+        $libro1 = Book::find($idBook);
+        $usuarioAutenticado = User::find(Auth::id());
+        $misLibros = $usuarioAutenticado->books();
+        return view('books.show')->with('book', $libro1)->with('misLibros', $misLibros);
     }
 
     /**
