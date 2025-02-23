@@ -3,6 +3,8 @@
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EsAdmin; // Esta es la importación correcta
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,7 +21,8 @@ Route::middleware('auth')->group(function () {
 });
 
 // MIAS
-Route::get('/misLibros', [BookController::class, 'mios'])->name('mios');
+Route::get('/misLibros', [BookController::class, 'mios'])->middleware(['auth', 'verified'])->name('mios');
+Route::get('/admin', [ProfileController::class, 'crud'])->middleware(['auth', EsAdmin::Class])->name('crud');
 Route::post('/book/{book}', [BookController::class, 'cambiar'])->name('cambiar');
 // PORTEGER CON MI MIDDLEWARE, USAR LITERAL:  ->middleware(['auth', 'admin'])
 Route::resource('book', BookController::class);

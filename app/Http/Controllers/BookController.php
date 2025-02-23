@@ -96,7 +96,7 @@ class BookController extends Controller
         //
         $libro1 = Book::find($idBook);
         $usuarioAutenticado = User::find(Auth::id());
-        $misLibros = $usuarioAutenticado->books();
+        $misLibros = $usuarioAutenticado->books()->get();
         return view('books.show')->with('book', $libro1)->with('misLibros', $misLibros);
     }
 

@@ -20,6 +20,10 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    public function crud(Request $request): View
+    {
+        return view('admin.crud');
+    }
 
     /**
      * Update the user's profile information.
