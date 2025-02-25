@@ -16,6 +16,11 @@ class BookSearch extends Component
     public $user;
     public function render()
     {
+        if(Auth::id() == null) {
+            $books = Book::all();
+            $users = User::all();
+            return view('livewire.book-search')->with('books', $books)->with('users', $users)->with('otherbooks', $books);
+        }
         $this->user =  User::find(Auth::id());
         $users = User::all();
         $books = Book::where(function ($query) {

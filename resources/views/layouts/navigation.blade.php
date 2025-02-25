@@ -15,6 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @auth
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
                         {{ __('Libros') }}
                     </x-nav-link>
@@ -27,6 +28,8 @@
                     <x-nav-link :href="route('book.create')" :active="request()->routeIs('book.create')">
                         {{ __('Registrar Libro') }}
                     </x-nav-link>
+                    @endauth
+
 
                 </div>
             </div>

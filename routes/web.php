@@ -7,7 +7,7 @@ use App\Http\Middleware\EsAdmin; // Esta es la importación correcta
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('books.index');
 });
 
 Route::get('/dashboard', function () {
