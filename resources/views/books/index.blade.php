@@ -114,6 +114,7 @@
                     const target = document.querySelector(this.getAttribute("data-dismiss-target"));
                     if (target) {
                         target.style.display = "none";
+                        location.reload();
                     }
                 });
             });

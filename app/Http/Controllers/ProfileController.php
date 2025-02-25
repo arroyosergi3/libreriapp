@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
+use App\Models\User;
 class ProfileController extends Controller
 {
     /**
@@ -22,7 +23,8 @@ class ProfileController extends Controller
     }
     public function crud(Request $request): View
     {
-        return view('admin.crud');
+        $users = User::all();
+        return view('admin.crud')->with('users', $users);
     }
 
     /**
@@ -61,4 +63,37 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function deleteUser(User $user): RedirectResponse
+    {
+
+        $user->delete();
+        return redirect()->route('crud')->with('deleteok', 'bien');
+    }
+    public function editUser(User $user)
+{
+    return view('profile.edituser', compact('user'));
+}
+
+
+public function updateUser(Request $request, User $user)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'address' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email,' . $user->id,
+        'rol' => 'required|in:admin,user',
+    ]);
+
+    $user->update([
+        'name' => $request->name,
+        'address' => $request->address,
+        'email' => $request->email,
+        'rol' => $request->rol,
+    ]);
+
+    return redirect()->route('crud')->with('updateUserOk', "bien");
+}
+
+
 }

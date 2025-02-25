@@ -28,6 +28,18 @@ class BookController extends Controller
     return view('books.index')->with(['otherbooks'=> $otherbooks, 'users' => $users]);
 }
 
+public function indexAll()
+{
+    // Obtener el usuario autenticado
+    $users = User::all();
+
+    // Obtener todos los libros excepto los que son del usuario autenticado
+    $otherbooks = Book::all();
+
+    // Pasar los otros libros a la vista
+    return view('books.index')->with(['otherbooks'=> $otherbooks, 'users' => $users]);
+}
+
 
     /**
      * Show the form for creating a new resource.
