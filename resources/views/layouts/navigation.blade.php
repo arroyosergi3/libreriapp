@@ -5,16 +5,14 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex items-center shrink-0">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('book.index') }}">
                         <x-application-logo class="block w-auto text-gray-800 fill-current h-9" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+
                     @auth
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
                         {{ __('Libros') }}
@@ -28,7 +26,18 @@
                     <x-nav-link :href="route('book.create')" :active="request()->routeIs('book.create')">
                         {{ __('Registrar Libro') }}
                     </x-nav-link>
+                    @if(Auth::user()->rol == 'admin')
+                    <x-nav-link :href="route('crud')" :active="request()->routeIs('crud')">
+                        {{ __('Administración') }}
+                    </x-nav-link>
+
+                    @endif
                     @endauth
+                    @guest
+                    <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
+                        {{ __('Iniciar Sesion') }}
+                    </x-nav-link>
+                    @endguest
 
 
                 </div>
@@ -53,7 +62,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('Mi Perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -63,7 +72,7 @@
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                {{ __('Cerrar Sesión') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>

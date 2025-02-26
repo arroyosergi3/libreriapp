@@ -1,1 +1,1 @@
-<img src="libreriapp_logo.png" alt="Logo de libreriaapp" width="64px">
+<img src="{{ asset("favicon.ico") }}" alt="Logo de libreriaapp" width="64px">
