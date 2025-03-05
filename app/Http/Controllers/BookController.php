@@ -117,7 +117,8 @@ public function indexAll()
      */
     public function edit(Book $book)
     {
-        //
+        return view('books.edit')->with('book', $book);
+
     }
 
     /**
@@ -125,15 +126,44 @@ public function indexAll()
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'publisher' => 'required|string|max:255',
+            'isbn' => 'required|string|max:20',
+            'pic' => 'required|image',
+        ]);
+
+        try {
+            $book->title = $request->title;
+            $book->author = $request->author;
+            $book->publisher = $request->publisher;
+            $book->isbn = $request->isbn;
+
+            if ($request->hasFile('pic')) {
+                $foto = time() . '-' . $request->file('pic')->getClientOriginalName();
+
+                $request->file('pic')->storeAs('img_books', $foto, 'public');
+
+                $book->pic = 'img_books/' . $foto;
+            }
+
+            $book->save();
+
+            return redirect()->route('mios')->with('updateBook', 'Libro actualizado correctamente');
+        } catch (\Exception $e) {
+            return redirect()->route('mios')->with('updateBook', 'Error al actualizar el libro');
+        }
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+        return to_route('mios')->with('bookdeleted', 'bookdeleted');
     }
 
     public function mios()

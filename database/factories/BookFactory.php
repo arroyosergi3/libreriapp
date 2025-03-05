@@ -19,12 +19,12 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::inRandomOrder()->first()->id, // Usuario aleatorio
-            'title' => $this->faker->sentence(4), // Título aleatorio
-            'author' => $this->faker->name(), // Autor aleatorio
-            'publisher' => $this->faker->company(), // Editorial aleatoria
-            'isbn' => $this->faker->isbn13(), // ISBN aleatorio
-            'pic' => $this->faker->imageUrl(), // Imagen aleatoria
+            'user_id' => User::inRandomOrder()->first()->id,
+            'title' => $this->faker->sentence(4),
+            'author' => $this->faker->name(),
+            'publisher' => $this->faker->company(),
+            'isbn' => $this->faker->isbn13(),
+            'pic' => $this->faker->imageUrl(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

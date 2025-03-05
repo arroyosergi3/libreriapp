@@ -6,17 +6,23 @@
 
         @if (session('msg'))
             @if (session('msg') == 'insertbooksuccess')
-            <x-alert type="success" message="Libro insertado con éxito" />
-
+                <x-alert type="success" message="Libro insertado con éxito" />
             @endif
             @if (session('msg') == 'insertbookerror')
-            <x-alert type="error" message="¡Ha ocurrido un error al insertar el componente!" />
-
+                <x-alert type="error" message="¡Ha ocurrido un error al insertar el componente!" />
             @endif
         @endif
         @if (session('adminerror'))
-        <x-alert type="error" message="No puedes acceder a esta ruta si no eres administrador" />
-            @endif
+            <x-alert type="error" message="No puedes acceder a esta ruta si no eres administrador" />
+        @endif
+        @if (session('insertDealok'))
+
+        <x-alert type="success" message="Solicitud enviada con éxito" />
+        @endif
+        @if (session('insertDealerror'))
+
+        <x-alert type="error" message="Error al enviar la solicitud" />
+        @endif
     </x-slot>
 
     <div class="py-12">
@@ -30,13 +36,11 @@
                         @foreach ($otherbooks as $book)
                             @foreach ($users as $user)
                                 @if ($user->id == $book->user_id)
+                                @endif
+                            @endforeach
+                        @endforeach
 
-@endif
-@endforeach
-@endforeach
 
-
-                                -->
                     </div>
 
                 </div>

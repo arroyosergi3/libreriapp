@@ -17,7 +17,7 @@
                     <x-nav-link :href="route('book.index')" :active="request()->routeIs('book.index')">
                         {{ __('Libros') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('misSolicitudes')" :active="request()->routeIs('misSolicitudes')">
                         {{ __('Mis Solicitudes') }}
                     </x-nav-link>
                     <x-nav-link :href="route('mios')" :active="request()->routeIs('mios')">
@@ -25,6 +25,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('book.create')" :active="request()->routeIs('book.create')">
                         {{ __('Registrar Libro') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')">
+                        {{ __('API  ') }}
                     </x-nav-link>
                     @if(Auth::user()->rol == 'admin')
                     <x-nav-link :href="route('crud')" :active="request()->routeIs('crud')">
